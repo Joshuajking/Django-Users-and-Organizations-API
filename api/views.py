@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import JsonResponse
 from .models import Users
 from .serializers import UsersSerializer
 from rest_framework.decorators import api_view
@@ -16,7 +14,7 @@ def user_retrieve_info_admin(request):
     if request.method == "GET":
         users = Users.objects.all()
         serializer = UsersSerializer(users, many=True)
-        return JsonResponse({"Users": serializer.data})
+        return Response(serializer.data)
 
     # POST /api/users/ Create an user for the organization, must set password as well. Request user must be Administrator
     if request.method == "POST":

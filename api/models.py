@@ -1,8 +1,9 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class Organization(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=13)
     address = models.CharField(max_length=250)
@@ -12,7 +13,7 @@ class Organization(models.Model):
 
 
 class Users(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=13)
     email = models.EmailField(max_length=50, unique=True)
