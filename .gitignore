@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm,django,python
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,pycharm,django,python
+# Created by https://www.toptal.com/developers/gitignore/api/django,python,pycharm,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,python,pycharm,visualstudiocode
 
 ### Django ###
 *.log
@@ -132,7 +132,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-venv_DjangoInterviewAssigment/
 .env
 .venv
 env/
@@ -374,6 +373,9 @@ poetry.toml
 # ruff
 .ruff_cache/
 
+# LSP config files
+pyrightconfig.json
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -393,4 +395,4 @@ poetry.toml
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm,django,python
+# End of https://www.toptal.com/developers/gitignore/api/django,python,pycharm,visualstudiocode
