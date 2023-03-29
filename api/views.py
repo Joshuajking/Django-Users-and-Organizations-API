@@ -1,4 +1,5 @@
-from api.models.models import Users
+from api.models.models import UserProfile
+from api.models.organization import OrganizationProfile
 from .serializers import UsersSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,7 +14,7 @@ def user_retrieve_info_admin(request):
     # return all the user model fields. Should support search by name, email. Should support filter by phone.
 
     if request.method == "GET":
-        users = Users.objects.all()
+        users = UserProfile.objects.all()
         serializer = UsersSerializer(users, many=True)
         return Response(serializer.data)
 

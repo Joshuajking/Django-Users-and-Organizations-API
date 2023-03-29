@@ -1,14 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.models import BaseUserManager
-from django.core.exceptions import ValidationError
-from django.conf import settings
 
 
-class OrganizationProfileManager(BaseUserManager):
+class OrganizationProfileManager(models.Manager):
     """Manager for Organization profiles"""
-    def create_organization(self, name, phone, address):
+    def create_organization(self, name):
         """Create a new organization profile"""
 
         organization = self.model(name=name)
@@ -18,7 +13,7 @@ class OrganizationProfileManager(BaseUserManager):
         return organization
 
 
-class OrganizationProfile(AbstractBaseUser, PermissionsMixin):
+class OrganizationProfile(models.Model):
     """Database model for Organizations in the system"""
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)

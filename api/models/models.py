@@ -6,18 +6,19 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.core.exceptions import ValidationError
-from django.conf import settings
 
 
 # Create your models here
 class UserProfileManager(BaseUserManager):
-    """Creates new user profile"""
-    def create_user(self, email, name, password=None):
+    """Manager for user profiles"""
+
+    def create_user(self, email, name, phone, birthday, organization, password=None):
+        """Creates new user profile"""
         if not email:
             raise ValueError('The Email field must be set')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=name)
+        user = self.model(email=email, name=name, phone=phone, birthdate=birthday, organization=organization)
 
         user.set_password(password)
         user.save(using=self._db)
@@ -30,13 +31,10 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     phone = models.CharField(max_length=13)
     birthdate = models.DateField()
-    organization = models.ForeignKey("organization.Organization", on_delete=models.CASCADE)
+    organization = models.ForeignKey('OrganizationProfile', on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
-    last_login = models.DateTimeField(auto_now=True)
-    date_joined = models.DateField(auto_now_add=True)
 
     objects = UserProfileManager()
 
